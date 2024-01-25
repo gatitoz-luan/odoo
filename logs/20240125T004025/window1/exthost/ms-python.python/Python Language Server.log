@@ -1,0 +1,11 @@
+2024-01-25 00:46:13.045 [info] (Client) Pylance async client (2023.12.1) started with python extension (2023.22.1)
+2024-01-25 00:46:13.990 [info] [Info  - 12:46:13 AM] (9282) Pylance language server 2023.12.1 (pyright a78e2b10) starting
+2024-01-25 00:46:13.991 [info] [Info  - 12:46:13 AM] (9282) Server root directory: /root/.vscode/extensions/ms-python.vscode-pylance-2023.12.1/dist
+2024-01-25 00:46:13.993 [info] [Info  - 12:46:13 AM] (9282) Starting service instance "addons"
+2024-01-25 00:46:14.134 [info] [Info  - 12:46:14 AM] (9282) Setting pythonPath for service "addons": "/bin/python"
+2024-01-25 00:46:14.135 [info] [Info  - 12:46:14 AM] (9282) Setting environmentName for service "addons": "3.10.12 (global)"
+2024-01-25 00:46:14.203 [info] [Info  - 12:46:14 AM] (9282) Assuming Python version 3.10
+2024-01-25 00:46:15.728 [info] [Info  - 12:46:15 AM] (9282) Found 5668 source files
+2024-01-25 00:46:20.993 [info] [Info  - 12:46:20 AM] (9282) [IDX(2)] Long operation: scan packages /home/luan/odoo/addons (3406ms)
+2024-01-25 00:46:27.292 [info] [Info  - 12:46:27 AM] (9282) [IDX(2)] Long operation: index execution environment /home/luan/odoo/addons (6165ms)
+2024-01-25 00:46:27.356 [info] [Info  - 12:46:27 AM] (9282) [IDX(2)] Long operation: index packages /home/luan/odoo/addons (6259ms)

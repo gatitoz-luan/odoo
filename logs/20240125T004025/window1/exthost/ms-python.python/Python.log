@@ -1,0 +1,75 @@
+2024-01-25 00:46:08.340 [info] Experiment 'pythonRecommendTensorboardExt' is active
+2024-01-25 00:46:08.340 [info] Experiment 'pythonREPLSmartSend' is active
+2024-01-25 00:46:08.340 [info] Experiment 'pythonSurveyNotification' is active
+2024-01-25 00:46:08.340 [info] Experiment 'pythonTerminalEnvVarActivation' is active
+2024-01-25 00:46:08.340 [info] Experiment 'pythonTestAdapter' is active
+2024-01-25 00:46:08.366 [error] Dir "/home/luan/odoo/addons" is not watchable (too many files)
+2024-01-25 00:46:08.427 [info] Default formatter is set to null for workspace /home/luan/odoo/addons
+2024-01-25 00:46:08.515 [info] Test server listening.
+2024-01-25 00:46:09.455 [info] > conda info --json
+2024-01-25 00:46:09.562 [info] Found: /bin/python --> /bin/python3.10
+2024-01-25 00:46:09.566 [info] Found: /bin/python2 --> /bin/python2.7
+2024-01-25 00:46:09.567 [info] Found: /bin/python2.7 --> /bin/python2.7
+2024-01-25 00:46:09.574 [info] Found: /bin/python3 --> /bin/python3.10
+2024-01-25 00:46:09.576 [info] Found: /bin/python3.10 --> /bin/python3.10
+2024-01-25 00:46:09.643 [warning] Retry failed, storage update failed for key PYTHON_GLOBAL_STORAGE_KEYS
+2024-01-25 00:46:09.643 [warning] Retry failed, storage update failed for key PYTHON_GLOBAL_STORAGE_KEYS
+2024-01-25 00:46:09.643 [warning] Retry failed, storage update failed for key PYTHON_GLOBAL_STORAGE_KEYS
+2024-01-25 00:46:09.643 [warning] Retry failed, storage update failed for key PYTHON_GLOBAL_STORAGE_KEYS
+2024-01-25 00:46:09.643 [warning] Retry failed, storage update failed for key PYTHON_GLOBAL_STORAGE_KEYS
+2024-01-25 00:46:09.643 [warning] Retry failed, storage update failed for key PYTHON_GLOBAL_STORAGE_KEYS
+2024-01-25 00:46:09.644 [warning] Retry failed, storage update failed for key PYTHON_WORKSPACE_STORAGE_KEYS
+2024-01-25 00:46:09.644 [warning] Retry failed, storage update failed for key PYTHON_WORKSPACE_STORAGE_KEYS
+2024-01-25 00:46:09.644 [warning] Retry failed, storage update failed for key PYTHON_WORKSPACE_STORAGE_KEYS
+2024-01-25 00:46:09.647 [info] Found: /usr/bin/python --> /usr/bin/python3.10
+2024-01-25 00:46:09.700 [info] Found: /usr/bin/python2 --> /usr/bin/python2.7
+2024-01-25 00:46:09.702 [info] Found: /usr/bin/python2.7 --> /usr/bin/python2.7
+2024-01-25 00:46:09.716 [info] Found: /usr/bin/python3 --> /usr/bin/python3.10
+2024-01-25 00:46:09.718 [info] Found: /usr/bin/python3.10 --> /usr/bin/python3.10
+2024-01-25 00:46:09.745 [info] > ~/.local/share/virtualenvs/ufsc-tVq-w3_0/bin/python -I ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py
+2024-01-25 00:46:10.836 [info] > /bin/python -I ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py
+2024-01-25 00:46:11.064 [info] > /bin/python2 -I ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py
+2024-01-25 00:46:11.187 [warning] [Error: Command failed: /bin/python2 -I /root/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py /root/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py
+Unknown option: -I
+usage: /bin/python2 [option] ... [-c cmd | -m mod | file | -] [arg] ...
+Try `python -h' for more information.
+
+	at ChildProcess.exithandler (node:child_process:431:12)
+	at ChildProcess.emit (node:events:525:35)
+	at maybeClose (node:internal/child_process:1091:16)
+	at Socket.<anonymous> (node:internal/child_process:449:11)
+	at Socket.emit (node:events:513:28)
+	at Pipe.<anonymous> (node:net:322:12)] {
+  code: 2,
+  killed: false,
+  signal: null,
+  cmd: '/bin/python2 -I /root/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py /root/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py'
+}
+2024-01-25 00:46:11.187 [error] Support for Python 2.7 has been dropped by the Python extension so certain features may not work, upgrade to using Python 3.
+2024-01-25 00:46:11.210 [info] > /bin/python2 ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py
+2024-01-25 00:46:11.230 [info] > /usr/bin/python -I ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py
+2024-01-25 00:46:11.347 [info] > /usr/bin/python2 -I ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py
+2024-01-25 00:46:11.352 [warning] [Error: Command failed: /usr/bin/python2 -I /root/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py /root/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py
+Unknown option: -I
+usage: /usr/bin/python2 [option] ... [-c cmd | -m mod | file | -] [arg] ...
+Try `python -h' for more information.
+
+	at ChildProcess.exithandler (node:child_process:431:12)
+	at ChildProcess.emit (node:events:525:35)
+	at maybeClose (node:internal/child_process:1091:16)
+	at Socket.<anonymous> (node:internal/child_process:449:11)
+	at Socket.emit (node:events:513:28)
+	at Pipe.<anonymous> (node:net:322:12)] {
+  code: 2,
+  killed: false,
+  signal: null,
+  cmd: '/usr/bin/python2 -I /root/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py /root/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py'
+}
+2024-01-25 00:46:11.352 [error] Support for Python 2.7 has been dropped by the Python extension so certain features may not work, upgrade to using Python 3.
+2024-01-25 00:46:11.365 [info] > /usr/bin/python2 ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/get_output_via_markers.py ~/.vscode/extensions/ms-python.python-2023.22.1/pythonFiles/interpreterInfo.py
+2024-01-25 00:46:12.177 [info] Send text to terminal: echo /usr/bin/bash
+2024-01-25 00:46:12.233 [info] Python interpreter path: /bin/python
+2024-01-25 00:46:12.238 [warning] Retry failed, storage update failed for key PYTHON_GLOBAL_STORAGE_KEYS
+2024-01-25 00:46:14.064 [info] Starting Pylance language server.
+2024-01-25 00:46:15.177 [info] Shell integration is not working for bash
+2024-01-25 00:46:15.179 [warning] Shell integration is not active, environment activated maybe overriden by the shell.
