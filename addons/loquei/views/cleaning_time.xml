@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_product_template_form_inherit_rental" model="ir.ui.view">
+        <field name="name">product.template.form.rental</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']/group[@name='Time_return']" position="inside">
+                <label for="cleaning_time" string="Dias para limpeza"/>
+                <field name="cleaning_time"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

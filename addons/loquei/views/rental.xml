@@ -1,0 +1,101 @@
+<odoo>
+    <!-- Integração com o módulo de Vendas -->
+    <!-- Localizar o menu de Vendas existente e usar seu ID para integração -->
+    <menuitem id="sale_rental_menu" name="Locação" parent="sale.menu_sales_config" sequence="10"/>
+
+    <!-- Submenu para Produtos de Locação -->
+    <menuitem id="sale_rental_product_menu" name="Produtos para Locação" parent="sale_rental_menu" sequence="1"/>
+
+    <!-- Submenu para Pedidos de Locação -->
+    <menuitem id="sale_rental_order_menu" name="Pedidos de Locação" parent="sale_rental_menu" sequence="2"/>
+
+    <!-- Vista de lista para Produtos de Locação -->
+    <record model="ir.ui.view" id="view_rental_product_list" model="ir.ui.view">
+        <field name="name">rental.product.list</field>
+        <field name="model">rental.product</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id"/>
+                <field name="rental_price"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de formulário para Produtos de Locação -->
+    <record model="ir.ui.view" id="view_rental_product_form" model="ir.ui.view">
+        <field name="name">rental.product.form</field>
+        <field name="model">rental.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="product_id"/>
+                        <field name="rental_price"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de lista para Pedidos de Locação -->
+    <record model="ir.ui.view" id="view_rental_order_list" model="ir.ui.view">
+        <field name="name">rental.order.list</field>
+        <field name="model">rental.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="customer_id"/>
+                <field name="rental_product_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="total_price"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de formulário para Pedidos de Locação -->
+    <record model="ir.ui.view" id="view_rental_order_form" model="ir.ui.view">
+        <field name="name">rental.order.form</field>
+        <field name="model">rental.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="customer_id"/>
+                        <field name="rental_product_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="total_price" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Ações para abrir as vistas -->
+    <record model="ir.ui.view" id="action_rental_products" model="ir.actions.act_window">
+        <field name="name">Produtos para Locação</field>
+        <field name="res_model">rental.product</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_rental_product_list"/>
+    </record>
+
+    <record model="ir.ui.view" id="action_rental_orders" model="ir.actions.act_window">
+        <field name="name">Pedidos de Locação</field>
+        <field name="res_model">rental.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_rental_order_list"/>
+    </record>
+
+    <!-- Vincula ações aos menus integrados no módulo de Vendas -->
+    <record model="ir.ui.view" id="rental_product_menu" model="ir.ui.menu">
+        <field name="name">Produtos para Locação</field>
+        <field name="action" ref="action_rental_products"/>
+    </record>
+
+
+    <record model="ir.ui.view" id="rental_order_menu" model="ir.ui.menu">
+        <field name="name">Pedidos de Locação</field>
+        <field name="action" ref="action_rental_orders"/>
+    </record>
+
+</odoo>
