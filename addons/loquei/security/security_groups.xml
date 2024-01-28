@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_rental_user" model="res.groups">
+        <field name="name">Usuário de Locação</field>
+        <!-- Adicione outras configurações necessárias para o grupo aqui -->
+    </record>
+</odoo>

@@ -54,7 +54,7 @@
                             </div>
                         </h1>
                     </div>
-                    <div name="options">
+                    <div name="options" invisible="true">
                         <span class="d-inline-block">
                             <field name="sale_ok"/>
                             <label for="sale_ok"/>
@@ -72,51 +72,49 @@
                                     <field name="detailed_type"/>
                                     <field name="product_tooltip" string="" class="fst-italic text-muted" invisible="type == 'service' and not sale_ok"/>
                                     <field name="uom_id" groups="uom.group_uom" options="{'no_create': True}"/>
-                                    <field name="uom_po_id" groups="uom.group_uom" options="{'no_create': True}"/>
+                                    <field name="uom_po_id" groups="uom.group_uom" invisible="true" options="{'no_create': True}"/>
                                 </group>
-                                <group name="group_standard_price">
+
+                                <group name="sale">
+                                </group>
+                                <group string="Upsell &amp; Cross-Sell" name="upsell" invisible="true"/>
+                                <group string="Sales Description" name="description">
+                                    <field colspan="2" name="description_sale" nolabel="1" placeholder="This note is added to sales orders and invoices."/>
+                                </group>
+                                <group name="group_standard_price" invisible="true">
                                     <label for="list_price"/>
                                     <div name="pricing" class="o_row">
-                                      <field name="list_price" class="oe_inline" widget='monetary'
-                                        options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                    <field name="list_price" class="oe_inline" widget='monetary'
+                                    options="{'currency_field': 'currency_id', 'field_digits': True}"/>
                                     </div>
                                     <label for="standard_price" invisible="product_variant_count &gt; 1 and not is_product_variant"/>
                                     <div name="standard_price_uom" invisible="product_variant_count &gt; 1 and not is_product_variant">
-                                        <field name="standard_price" class="oe_inline" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
-                                        <span groups="uom.group_uom" >per
-                                            <field name="uom_name" class="oe_inline"/>
-                                        </span>
+                                    <field name="standard_price" class="oe_inline" widget='monetary' options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                                    <span groups="uom.group_uom" >per
+                                    <field name="uom_name" class="oe_inline"/>
+                                    </span>
                                     </div>
                                     <field name="categ_id" string="Product Category"/>
                                     <field name="product_tag_ids" widget="many2many_tags" context="{'product_template_id': id}"/>
                                     <button name="%(product_tag_action)d" icon="oi-arrow-right" type="action" class="btn-link ps-0" colspan="2" string="Configure tags"/>
                                     <field name="company_id" groups="base.group_multi_company"
-                                        options="{'no_create': True}"/>
+                                    options="{'no_create': True}"/>
                                     <field name="currency_id" invisible="1"/>
                                     <field name="cost_currency_id" invisible="1"/>
                                     <field name="product_variant_id" invisible="1"/>
                                 </group>
-                            </group>
-                            <group string="Internal Notes">
-                                <field colspan="2" name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
-                            </group>
-                        </page>
-                        <page string="Sales" name="sales" invisible="1 or not sale_ok">
-                            <group name="sale">
-                                <group string="Upsell &amp; Cross-Sell" name="upsell" invisible="1"/>
-                            </group>
-                            <group>
-                                <group string="Sales Description" name="description">
-                                    <field colspan="2" name="description_sale" nolabel="1" placeholder="This note is added to sales orders and invoices."/>
+                                <group string="Internal Notes">
+                                    <field colspan="2" name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
                                 </group>
                             </group>
                         </page>
-                        <page string="Purchase" name="purchase" invisible="1 or not purchase_ok">
+
+                        <page string="Purchase" name="purchase" invisible="true">
                             <group name="purchase">
                                 <group string="Vendor Bills" name="bill"/>
                             </group>
                         </page>
-                        <page string="Inventory" name="inventory" groups="product.group_stock_packaging" invisible="type == 'service'">
+                        <page string="Inventory" name="inventory" groups="product.group_stock_packaging" invisible="true">
                             <group name="inventory">
                                 <group name="group_lots_and_weight" string="Logistics" invisible="type not in ['product', 'consu']">
                                     <label for="weight" invisible="product_variant_count &gt; 1 and not is_product_variant"/>

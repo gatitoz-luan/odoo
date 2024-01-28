@@ -1,0 +1,19 @@
+<!-- rental_order_view.xml -->
+
+<odoo>
+    <record id="rental_order_form_view" model="ir.ui.view">
+        <field name="name">rental.order.form</field>
+        <field name="model">rental.order</field>
+        <field name="arch" type="xml">
+            <form string="Pedido de Locação">
+                <group>
+                    <field name="customer_id"/>
+                    <field name="rental_product_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="total_price" readonly="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+</odoo>
