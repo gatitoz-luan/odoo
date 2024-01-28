@@ -614,24 +614,42 @@ class SaleOrderLine(models.Model):
         )
 
     @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id')
+
     def _compute_amount(self):
         """
-        Compute the amounts of the SO line.
+        Compute the amounts of the SO line using rental price and rental period.
         """
         for line in self:
+            rental_start = line.order_id.rental_start_date
+            rental_end = line.order_id.rental_end_date
+
+            # Verifica se as datas de início e fim da locação estão definidas
+            if rental_start and rental_end:
+                rental_start_date = fields.Date.from_string(rental_start)
+                rental_end_date = fields.Date.from_string(rental_end)
+                rental_duration = (rental_end_date - rental_start_date).days + 1  # Inclui ambos os dias
+
+                # Calcula o subtotal com base no preço de locação e na duração
+                line.price_unit = line.product_id.rental_price
+                amount_untaxed = line.price_unit * rental_duration
+            else:
+                # Se as datas não estiverem definidas, define valores padrão
+                rental_duration = 0
+                amount_untaxed = 0
+
+            # Calcula os impostos
             tax_results = self.env['account.tax']._compute_taxes([
                 line._convert_to_tax_base_line_dict()
             ])
             totals = list(tax_results['totals'].values())[0]
-            amount_untaxed = totals['amount_untaxed']
             amount_tax = totals['amount_tax']
 
+            # Atualiza os valores da linha
             line.update({
                 'price_subtotal': amount_untaxed,
                 'price_tax': amount_tax,
                 'price_total': amount_untaxed + amount_tax,
             })
-
     @api.depends('price_subtotal', 'product_uom_qty')
     def _compute_price_reduce_taxexcl(self):
         for line in self:

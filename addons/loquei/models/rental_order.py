@@ -4,6 +4,7 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from datetime import timedelta
 
+
 class RentalOrder(models.Model):
     _name = 'rental.order'
     _description = 'Rental Order'
@@ -13,6 +14,21 @@ class RentalOrder(models.Model):
     start_date = fields.Date(string='Start Date')
     end_date = fields.Date(string='End Date')
     total_price = fields.Float(compute='_compute_total_price', string='Total Price')
+
+    # Campos adicionais para exibição
+    start_date_display = fields.Char(string='Start Date (dd/mm/yyyy)', compute='_compute_date_display')
+    end_date_display = fields.Char(string='End Date (dd/mm/yyyy)', compute='_compute_date_display')
+
+    @api.depends('start_date', 'end_date')
+    def _compute_date_display(self):
+        for record in self:
+            record.start_date_display = datetime.strftime(
+                fields.Datetime.from_string(record.start_date),
+                '%d/%m/%Y') if record.start_date else ''
+
+            record.end_date_display = datetime.strftime(
+                fields.Datetime.from_string(record.end_date),
+                '%d/%m/%Y') if record.end_date else ''
 
     @api.depends('rental_product_id', 'start_date', 'end_date')
     def _compute_total_price(self):
@@ -52,3 +68,8 @@ class RentalOrder(models.Model):
 
         # Verifica se a quantidade disponível é suficiente
         return product.quantity_available >= (quantity + total_quantity_reserved)
+
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
+
+    rental_price = fields.Float(string='Preço de Locação Diário')

@@ -10,6 +10,7 @@
         'security/ir.model.access.csv',    # Em seguida, defina as regras de acesso
         'views/rental_order_view.xml',
         'views/product_template_view.xml',
+        'views/cleaning_time.xml',
         'views/rental.xml'
     ],
 

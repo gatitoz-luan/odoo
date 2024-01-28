@@ -5,4 +5,4 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     cleaning_time = fields.Integer("Dias para Limpeza")
-    rental_price = fields.Float("Preço de Locação por Dia")
+    rental_price = fields.Float("Preço de Locação Diário")

@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <!-- Herda a visão do formulário de cotação do módulo de vendas -->
+        <record id="view_order_form_inherit_rental" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.rental</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- Substitui o campo 'unit_price' pelo 'rental_price' na linha do pedido -->
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree" position="inside">
+                    <field name="rental_price" string="Preço de Locação Diário"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
