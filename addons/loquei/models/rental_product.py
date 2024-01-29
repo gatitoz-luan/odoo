@@ -15,8 +15,3 @@ class RentalProduct(models.Model):
                 raise ValidationError("The rental price cannot be negative.")
 
 
-class SaleOrder(models.Model):
-    _inherit = 'sale.order'
-
-    rental_start_date = fields.Date(string="Início da Locação")
-    rental_end_date = fields.Date(string="Fim da Locação")

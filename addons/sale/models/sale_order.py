@@ -71,6 +71,9 @@ class SaleOrder(models.Model):
         tracking=3,
         default='draft')
     locked = fields.Boolean(default=False, copy=False, help="Locked orders cannot be modified.")
+    
+    rental_start_date = fields.Date(string="Início da Locação")
+    rental_end_date = fields.Date(string="Fim da Locação")
 
     client_order_ref = fields.Char(string="Customer Reference", copy=False)
     create_date = fields.Datetime(  # Override of default create_date field from ORM

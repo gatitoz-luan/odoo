@@ -85,7 +85,8 @@ class SaleOrderLine(models.Model):
 
     start_date = fields.Date(related='rental_order_id.start_date', string='Start Date', store=True, readonly=False)
     end_date = fields.Date(related='rental_order_id.end_date', string='End Date', store=True, readonly=False)
-    
+    cleaning_time = fields.Integer(string="Cleaning Time (days)")
+
     rental_price = fields.Float(string='Preço de Locação Diário')
 
     @api.onchange('product_id')
@@ -114,6 +115,17 @@ class SaleOrderLine(models.Model):
                     line.product_id, line.order_id.warehouse_id.lot_stock_id, 
                     from_date=start_date_with_cleaning, to_date=line.end_date
                 )
+    @api.depends('end_date', 'product_id.cleaning_time')
+    def _compute_rental_return_date(self):
+        for record in self:
+            if record.end_date and record.product_id.cleaning_time:
+                # Calcula a data de retorno considerando o tempo de limpeza
+                record.rental_return_date = record.end_date + timedelta(days=record.product_id.cleaning_time)
+            else:
+                record.rental_return_date = False
+
+    # Campo calculado para a data de retorno
+    rental_return_date = fields.Date(string="Rental Return Date", compute="_compute_rental_return_date", store=True)
 
     # Campos adicionais
     availability = fields.Float(compute='_compute_availability', string='Disponibilidade')

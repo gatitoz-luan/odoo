@@ -9,3 +9,22 @@
 2024-01-25 00:46:20.993 [info] [Info  - 12:46:20 AM] (9282) [IDX(2)] Long operation: scan packages /home/luan/odoo/addons (3406ms)
 2024-01-25 00:46:27.292 [info] [Info  - 12:46:27 AM] (9282) [IDX(2)] Long operation: index execution environment /home/luan/odoo/addons (6165ms)
 2024-01-25 00:46:27.356 [info] [Info  - 12:46:27 AM] (9282) [IDX(2)] Long operation: index packages /home/luan/odoo/addons (6259ms)
+2024-01-28 20:06:16.384 [info] [Info  - 8:06:16 PM] (9282) Found 5670 source files
+2024-01-28 20:06:25.698 [info] [Info  - 8:06:25 PM] (9282) [BG(1)] Long operation: parsing: /home/luan/odoo/addons/account/__init__.py (5045ms)
+2024-01-28 20:06:26.497 [info] [Info  - 8:06:26 PM] (9282) [BG(1)] Long operation: indexing: /home/luan/odoo/addons/account/__init__.py (5840ms)
+2024-01-28 20:06:36.799 [info] [Info  - 8:06:36 PM] (9282) [BG(1)] Long operation: indexing: /home/luan/odoo/addons/hr_expense/models/hr_expense.py (2492ms)
+2024-01-28 21:36:50.334 [info] [Info  - 9:36:50 PM] (9282) [BG(1)] Long operation: checking: /home/luan/odoo/addons/sale/models/sale_order.py (2380ms)
+2024-01-28 21:36:50.335 [info] [Info  - 9:36:50 PM] (9282) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/sale/models/sale_order.py (2700ms)
+2024-01-28 21:43:04.514 [info] [Info  - 9:43:04 PM] (9282) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706488979299 at /home/luan/odoo/addons/sale/models/sale_order.py (2759ms)
+2024-01-28 23:07:09.591 [info] [Info  - 11:07:09 PM] (9282) Found 5671 source files
+2024-01-28 23:25:29.371 [info] [Info  - 11:25:29 PM] (9282) [BG(1)] Long operation: checking: /home/luan/odoo/addons/sale/models/sale_order_line.py (2060ms)
+2024-01-28 23:25:29.372 [info] [Info  - 11:25:29 PM] (9282) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/sale/models/sale_order_line.py (2519ms)
+2024-01-28 23:26:07.319 [info] [Info  - 11:26:07 PM] (9282) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706488989407 at /home/luan/odoo/addons/sale/models/sale_order.py (2975ms)
+2024-01-28 23:42:25.474 [info] [Info  - 11:42:25 PM] (9282) Setting pythonPath for service "addons": "/bin/python"
+2024-01-28 23:42:25.499 [info] [Info  - 11:42:25 PM] (9282) Setting environmentName for service "addons": "3.10.12 (global)"
+2024-01-28 23:42:26.289 [info] [Info  - 11:42:26 PM] (9282) Assuming Python version 3.10
+2024-01-28 23:42:30.392 [info] [Info  - 11:42:30 PM] (9282) Found 5671 source files
+2024-01-28 23:42:33.954 [info] [Info  - 11:42:33 PM] (9282) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706496000848 at /home/luan/odoo/addons/sale/models/sale_order.py (3303ms)
+2024-01-28 23:42:37.022 [info] [Info  - 11:42:37 PM] (9282) [BG(1)] Long operation: checking: /home/luan/odoo/addons/sale/models/sale_order.py (2861ms)
+2024-01-28 23:42:37.022 [info] [Info  - 11:42:37 PM] (9282) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/sale/models/sale_order.py (2861ms)
+2024-01-28 23:42:38.600 [info] [Info  - 11:42:38 PM] (9282) [IDX(3)] Long operation: scan packages /home/luan/odoo/addons (3719ms)
