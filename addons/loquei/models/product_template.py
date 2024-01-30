@@ -1,4 +1,3 @@
-# product_template.py
 from odoo import models, fields, api
 
 class ProductTemplate(models.Model):
@@ -17,8 +16,12 @@ class ProductTemplate(models.Model):
         for variant in self.product_variant_ids:
             variant.rental_price = self.rental_price
 
+            
 class ProductProduct(models.Model):
     _inherit = 'product.product'
+
+    # Campo relacionado para garantir consistência entre os modelos
+    cleaning_time = fields.Integer(related='product_tmpl_id.cleaning_time', string="Dias para Limpeza", readonly=True)
 
     rental_price = fields.Float(string='Preço de Locação Diário', related='product_tmpl_id.rental_price', readonly=False)
 
@@ -30,3 +33,4 @@ class ProductProduct(models.Model):
     def _onchange_rental_price(self):
         self.lst_price = self.rental_price
         self.product_tmpl_id.rental_price = self.rental_price
+
