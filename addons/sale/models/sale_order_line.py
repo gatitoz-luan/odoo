@@ -221,6 +221,7 @@ class SaleOrderLine(models.Model):
         compute='_compute_qty_to_invoice',
         digits='Product Unit of Measure',
         store=True)
+    rental_duration = fields.Integer(string="Duração da Locação", compute='_compute_rental_duration', store=True)
 
     analytic_line_ids = fields.One2many(
         comodel_name='account.analytic.line', inverse_name='so_line',
@@ -405,6 +406,16 @@ class SaleOrderLine(models.Model):
             if float_compare(product_uom_qty, line.product_uom_qty, precision_rounding=line.product_uom.rounding) != 0:
                 line.product_uom_qty = product_uom_qty
 
+
+    @api.depends('order_id.rental_start_date', 'order_id.rental_end_date')
+    def _compute_rental_duration(self):
+        for record in self:
+            if record.order_id.rental_start_date and record.order_id.rental_end_date:
+                start_date = fields.Date.from_string(record.order_id.rental_start_date)
+                end_date = fields.Date.from_string(record.order_id.rental_end_date)
+                record.rental_duration = (end_date - start_date).days + 1
+            else:
+                record.rental_duration = 0
     @api.depends('product_id')
     def _compute_product_uom(self):
         for line in self:
@@ -613,11 +624,10 @@ class SaleOrderLine(models.Model):
             **kwargs,
         )
 
-    @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id')
-
-    def _compute_amount(self):
+    @api.depends('order_id.rental_start_date', 'order_id.rental_end_date', 'product_uom_qty', 'discount', 'price_unit', 'tax_id')
+    def _compute_rental_values(self):
         """
-        Compute the amounts of the SO line using rental price and rental period.
+        Compute the rental line values, including the rental duration, amounts, and taxes.
         """
         for line in self:
             rental_start = line.order_id.rental_start_date
@@ -627,29 +637,29 @@ class SaleOrderLine(models.Model):
             if rental_start and rental_end:
                 rental_start_date = fields.Date.from_string(rental_start)
                 rental_end_date = fields.Date.from_string(rental_end)
-                rental_duration = (rental_end_date - rental_start_date).days + 1  # Inclui ambos os dias
+                rental_duration = (rental_end_date - rental_start_date).days + 1
 
                 # Calcula o subtotal com base no preço de locação e na duração
-                line.price_unit = line.product_id.rental_price
-                amount_untaxed = line.price_unit * rental_duration
+                line.price_unit = line.product_id.lst_price
+                amount_untaxed = line.price_unit * rental_duration * line.product_uom_qty
             else:
-                # Se as datas não estiverem definidas, define valores padrão
                 rental_duration = 0
                 amount_untaxed = 0
 
             # Calcula os impostos
-            tax_results = self.env['account.tax']._compute_taxes([
-                line._convert_to_tax_base_line_dict()
-            ])
-            totals = list(tax_results['totals'].values())[0]
+            tax_results = self.env['account.tax']._compute_taxes([line._convert_to_tax_base_line_dict()])
+            totals = list(tax_results['totals'].values())[0] if tax_results['totals'] else {'amount_tax': 0}
             amount_tax = totals['amount_tax']
 
-            # Atualiza os valores da linha
+            # Atualiza os valores da linha, incluindo rental_duration
             line.update({
+                'rental_duration': rental_duration,
                 'price_subtotal': amount_untaxed,
                 'price_tax': amount_tax,
                 'price_total': amount_untaxed + amount_tax,
             })
+
+
     @api.depends('price_subtotal', 'product_uom_qty')
     def _compute_price_reduce_taxexcl(self):
         for line in self:

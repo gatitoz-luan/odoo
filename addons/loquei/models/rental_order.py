@@ -88,6 +88,7 @@ class SaleOrderLine(models.Model):
     cleaning_time = fields.Integer(string="Cleaning Time (days)")
 
     rental_price = fields.Float(string='Preço de Locação Diário')
+    
 
     @api.onchange('product_id')
     def _onchange_product_id_update_rental_price(self):

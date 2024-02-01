@@ -293,6 +293,12 @@ class SaleOrder(models.Model):
 
     def init(self):
         create_index(self._cr, 'sale_order_date_order_id_idx', 'sale_order', ["date_order desc", "id desc"])
+    
+
+    @api.onchange('rental_start_date')
+    def _onchange_rental_start_date(self):
+        if self.rental_start_date:
+            self.commitment_date = self.rental_start_date
 
     #=== COMPUTE METHODS ===#
 
@@ -451,27 +457,62 @@ class SaleOrder(models.Model):
                 )
             order.team_id = cached_teams[key]
 
-    @api.depends('order_line.price_subtotal', 'order_line.price_tax', 'order_line.price_total')
+
+    @api.model
+    def create(self, vals):
+        # Antes de criar o registro, sincronize rental_start_date, commitment_date e date_order
+        if 'rental_start_date' in vals:
+            vals['commitment_date'] = vals['rental_start_date']
+            vals['date_order'] = vals['rental_start_date']
+        elif 'commitment_date' in vals:
+            vals['rental_start_date'] = vals['commitment_date']
+            vals['date_order'] = vals['commitment_date']
+        elif 'date_order' in vals:
+            vals['rental_start_date'] = vals['date_order']
+            vals['commitment_date'] = vals['date_order']
+        return super(SaleOrder, self).create(vals)
+
+    def write(self, vals):
+        # Antes de atualizar o registro, sincronize rental_start_date, commitment_date e date_order
+        if 'rental_start_date' in vals:
+            vals['commitment_date'] = vals['rental_start_date']
+            vals['date_order'] = vals['rental_start_date']
+        elif 'commitment_date' in vals:
+            vals['rental_start_date'] = vals['commitment_date']
+            vals['date_order'] = vals['commitment_date']
+        elif 'date_order' in vals:
+            vals['rental_start_date'] = vals['date_order']
+            vals['commitment_date'] = vals['date_order']
+        return super(SaleOrder, self).write(vals)
+    
+    @api.depends('order_line.price_subtotal', 'order_line.price_tax', 'order_line.price_total', 'rental_start_date', 'rental_end_date')
     def _compute_amounts(self):
-        """Compute the total amounts of the SO."""
+        """Compute the total amounts of the SO considering the number of rental days."""
         for order in self:
             order_lines = order.order_line.filtered(lambda x: not x.display_type)
 
+            # Calculando a quantidade de dias
+            if order.rental_start_date and order.rental_end_date:
+                delta_days = (order.rental_end_date - order.rental_start_date).days + 1
+            else:
+                delta_days = 1  # Se não houver datas definidas, assume-se 1 dia por padrão
+
             if order.company_id.tax_calculation_rounding_method == 'round_globally':
                 tax_results = self.env['account.tax']._compute_taxes([
-                    line._convert_to_tax_base_line_dict()
+                    line._convert_to_tax_base_line_dict(delta_days=delta_days)  # Supondo que você ajuste esta função para aceitar delta_days
                     for line in order_lines
                 ])
                 totals = tax_results['totals']
                 amount_untaxed = totals.get(order.currency_id, {}).get('amount_untaxed', 0.0)
                 amount_tax = totals.get(order.currency_id, {}).get('amount_tax', 0.0)
             else:
-                amount_untaxed = sum(order_lines.mapped('price_subtotal'))
-                amount_tax = sum(order_lines.mapped('price_tax'))
+                amount_untaxed = sum(line.price_subtotal * delta_days for line in order_lines)  # Multiplicando cada subtotal pela quantidade de dias
+                amount_tax = sum(line.price_tax * delta_days for line in order_lines)  # Multiplicando cada valor de imposto pela quantidade de dias
 
             order.amount_untaxed = amount_untaxed
             order.amount_tax = amount_tax
             order.amount_total = order.amount_untaxed + order.amount_tax
+
 
     @api.depends('order_line.invoice_lines')
     def _get_invoiced(self):
@@ -796,6 +837,23 @@ class SaleOrder(models.Model):
                     "You can not delete a sent quotation or a confirmed sales order."
                     " You must first cancel it."))
 
+
+    @api.depends('order_line.price_total', 'order_line.price_subtotal')
+    def _amount_all(self):
+        """
+        Recalcular os totais da ordem de venda para refletir as mudanças nos subtotais.
+        """
+        for order in self:
+            amount_untaxed = amount_tax = 0.0
+            for line in order.order_line:
+                amount_untaxed += line.price_subtotal
+                # Supondo que `price_total` inclua impostos
+                amount_tax += line.price_total - line.price_subtotal
+            order.update({
+                'amount_untaxed': amount_untaxed,
+                'amount_tax': amount_tax,
+                'amount_total': amount_untaxed + amount_tax,
+            })
     #=== ACTION METHODS ===#
 
     def action_open_discount_wizard(self):
