@@ -1,0 +1,55 @@
+2024-02-01 10:55:02.409 [info] Experiment 'pythonRecommendTensorboardExt' is active
+2024-02-01 10:55:02.409 [info] Experiment 'pythonREPLSmartSend' is active
+2024-02-01 10:55:02.409 [info] Experiment 'pythonSurveyNotification' is active
+2024-02-01 10:55:02.409 [info] Experiment 'pythonTerminalEnvVarActivation' is active
+2024-02-01 10:55:02.409 [info] Experiment 'pythonTestAdapter' is active
+2024-02-01 10:55:02.409 [error] Dir "/home/luan/odoo/addons" is not watchable (too many files)
+2024-02-01 10:55:02.530 [info] Default formatter is set to null for workspace /home/luan/odoo/addons
+2024-02-01 10:55:02.555 [info] Test server listening.
+2024-02-01 10:55:02.557 [info] Python interpreter path: /bin/python
+2024-02-01 10:55:05.210 [info] Send text to terminal: echo /usr/bin/bash
+2024-02-01 10:55:08.234 [info] Shell integration is not working for bash
+2024-02-01 10:55:08.237 [warning] Shell integration is not active, environment activated maybe overriden by the shell.
+2024-02-01 10:55:09.552 [info] Starting Pylance language server.
+2024-02-01 10:56:57.984 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:15:41.166 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:15:43.718 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:15:58.272 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:16:11.259 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:19:14.282 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:19:31.583 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:40:41.196 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:40:47.963 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:40:49.660 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:40:51.829 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:40:52.976 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 11:54:30.913 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 11:54:33.246 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 11:54:41.602 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 11:55:01.142 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 11:55:05.326 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 11:55:06.489 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 11:56:35.273 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 11:56:44.841 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 11:56:48.712 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 12:21:45.527 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 12:21:58.441 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 12:22:02.548 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 12:22:40.298 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 12:22:45.064 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 12:29:35.340 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 12:29:37.755 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 12:29:43.506 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 13:01:44.119 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order.py
+2024-02-01 13:21:48.063 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 13:21:54.443 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 13:30:47.341 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 13:30:50.141 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 13:57:33.503 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 13:57:39.389 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 13:57:50.798 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 13:57:57.203 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 13:58:01.094 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 13:58:19.766 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 14:01:31.888 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py
+2024-02-01 14:01:34.726 [info] Discover tests for workspace name: addons - uri: /home/luan/odoo/addons/sale/models/sale_order_line.py

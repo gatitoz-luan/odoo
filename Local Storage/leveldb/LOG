@@ -1,2 +1,3 @@
-2024/01/25-00:40:25.696 204c Creating DB /home/luan/odoo/Local Storage/leveldb since it was missing.
-2024/01/25-00:40:25.972 204c Reusing MANIFEST /home/luan/odoo/Local Storage/leveldb/MANIFEST-000001
+2024/02/01-10:54:55.422 4eb4 Reusing MANIFEST /home/luan/odoo/Local Storage/leveldb/MANIFEST-000001
+2024/02/01-10:54:55.423 4eb4 Recovering log #3
+2024/02/01-10:54:55.423 4eb4 Reusing old log /home/luan/odoo/Local Storage/leveldb/000003.log 

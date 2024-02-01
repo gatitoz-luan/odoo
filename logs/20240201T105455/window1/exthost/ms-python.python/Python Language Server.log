@@ -1,0 +1,14 @@
+2024-02-01 10:55:06.604 [info] (Client) Pylance async client (2023.12.1) started with python extension (2023.22.1)
+2024-02-01 10:55:09.510 [info] [Info  - 10:55:09 AM] (20382) Pylance language server 2023.12.1 (pyright a78e2b10) starting
+2024-02-01 10:55:09.511 [info] [Info  - 10:55:09 AM] (20382) Server root directory: /root/.vscode/extensions/ms-python.vscode-pylance-2023.12.1/dist
+2024-02-01 10:55:09.512 [info] [Info  - 10:55:09 AM] (20382) Starting service instance "addons"
+2024-02-01 10:55:09.781 [info] [Info  - 10:55:09 AM] (20382) Setting pythonPath for service "addons": "/bin/python"
+2024-02-01 10:55:09.789 [info] [Info  - 10:55:09 AM] (20382) Setting environmentName for service "addons": "3.10.12 (global)"
+2024-02-01 10:55:09.981 [info] [Info  - 10:55:09 AM] (20382) Assuming Python version 3.10
+2024-02-01 10:55:13.689 [info] [Info  - 10:55:13 AM] (20382) Found 5671 source files
+2024-02-01 10:55:20.628 [info] [Info  - 10:55:20 AM] (20382) [IDX(2)] Long operation: scan packages /home/luan/odoo/addons (4473ms)
+2024-02-01 10:55:44.350 [info] [Info  - 10:55:44 AM] (20382) [BG(1)] Long operation: checking: /home/luan/odoo/addons/sale/models/sale_order_line.py (2054ms)
+2024-02-01 10:55:44.350 [info] [Info  - 10:55:44 AM] (20382) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/sale/models/sale_order_line.py (2119ms)
+2024-02-01 11:41:24.899 [info] [Info  - 11:41:24 AM] (20382) [BG(1)] Long operation: checking: /home/luan/odoo/addons/sale/models/sale_order.py (2784ms)
+2024-02-01 11:41:24.900 [info] [Info  - 11:41:24 AM] (20382) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/sale/models/sale_order.py (2922ms)
+2024-02-01 11:54:33.464 [info] [Info  - 11:54:33 AM] (20382) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706799270939 at /home/luan/odoo/addons/sale/models/sale_order.py (2035ms)
