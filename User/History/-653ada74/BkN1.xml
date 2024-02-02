@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <!-- Modelo de Automatização -->
+        <record id="model_sale_order_auto_generate_replenish" model="workflow">
+            <field name="name">Sale Order Auto Generate Replenish</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="on_create">False</field>
+            <field name="on_write">True</field>
+        </record>
+        
+        <!-- Gatilho: Quando uma venda é confirmada -->
+        <record id="trigger_sale_order_confirm" model="workflow.transition">
+            <field name="act_from" ref="base.action_res_users_form"/>
+            <field name="act_type">function</field>
+            <field name="act_type_id" ref="sale.action_confirm"/>
+            <field name="condition">True</field>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="trg_id" ref="model_sale_order_auto_generate_replenish"/>
+            <field name="signal">confirmed</field>
+        </record>
+        
+        <!-- Ação: Criar "product replenish" -->
+        <record id="action_create_product_replenish" model="workflow.activity">
+            <field name="name">Create Product Replenish</field>
+            <field name="kind">function</field>
+            <field name="action_id" ref="action_create_product_replenish_action"/>
+            <field name="flow_start">True</field>
+            <field name="flow_stop">False</field>
+        </record>
+        
+        <!-- Ação: Função para criar "product replenish" -->
+        <record id="action_create_product_replenish_action" model="ir.actions.server">
+            <field name="name">Create Product Replenish Action</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="code">
+                self.ensure_one()
+                # Crie um "product replenish" para cada item da venda
+                for line in self.order_line:
+                    replenish_values = {
+                        'product_id': line.product_id.id,
+                        'quantity': line.product_uom_qty,
+                        'schedule_date': self.rental_end_date,  # Substitua pelo campo correto
+                        # Outros campos necessários para o "product replenish"
+                    }
+                    self.env['product.replenish'].create(replenish_values)
+                return True
+            </field>
+        </record>
+        
+    </data>
+</odoo>

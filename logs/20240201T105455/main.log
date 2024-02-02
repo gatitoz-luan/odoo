@@ -1,3 +1,6 @@
 2024-02-01 10:54:55.635 [info] update#setState idle
 2024-02-01 10:55:25.639 [info] update#setState checking for updates
 2024-02-01 10:55:25.682 [info] update#setState available for download
+2024-02-01 23:42:20.219 [warning] No ptyHost heartbeat after 6 seconds
+2024-02-02 07:48:00.101 [warning] No ptyHost heartbeat after 6 seconds
+2024-02-02 11:23:22.036 [info] Extension host with pid 31481 exited with code: 0, signal: unknown.

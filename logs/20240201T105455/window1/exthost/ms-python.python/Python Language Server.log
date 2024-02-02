@@ -12,3 +12,38 @@
 2024-02-01 11:41:24.899 [info] [Info  - 11:41:24 AM] (20382) [BG(1)] Long operation: checking: /home/luan/odoo/addons/sale/models/sale_order.py (2784ms)
 2024-02-01 11:41:24.900 [info] [Info  - 11:41:24 AM] (20382) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/sale/models/sale_order.py (2922ms)
 2024-02-01 11:54:33.464 [info] [Info  - 11:54:33 AM] (20382) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706799270939 at /home/luan/odoo/addons/sale/models/sale_order.py (2035ms)
+2024-02-01 16:29:16.907 [info] [Info  - 4:29:16 PM] (20382) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706804340584 at /home/luan/odoo/addons/sale/models/sale_order.py (4691ms)
+2024-02-01 17:51:59.929 [info] [Info  - 5:51:59 PM] (20382) [BG(1)] Long operation: checking: /home/luan/odoo/addons/stock/models/stock_picking.py (4212ms)
+2024-02-01 17:51:59.930 [info] [Info  - 5:51:59 PM] (20382) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/stock/models/stock_picking.py (4592ms)
+2024-02-01 18:11:58.668 [info] [Info  - 6:11:58 PM] (20382) [BG(1)] Long operation: checking: /home/luan/odoo/addons/mrp/models/mrp_production.py (2423ms)
+2024-02-01 18:11:58.668 [info] [Info  - 6:11:58 PM] (20382) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/mrp/models/mrp_production.py (2761ms)
+2024-02-01 18:17:09.360 [info] [Info  - 6:17:09 PM] (20382) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/stock/models/stock_move.py (2484ms)
+2024-02-01 18:19:29.906 [info] [Info  - 6:19:29 PM] (20382) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706822352990 at /home/luan/odoo/addons/stock/models/stock_move.py (4002ms)
+2024-02-01 18:23:53.786 [info] [Info  - 6:23:53 PM] (20382) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706822489156 at /home/luan/odoo/addons/stock/models/stock_move.py (6127ms)
+2024-02-01 18:29:02.485 [info] [Info  - 6:29:02 PM] (20382) Setting pythonPath for service "addons": "/bin/python"
+2024-02-01 18:29:02.485 [info] [Info  - 6:29:02 PM] (20382) Setting environmentName for service "addons": "3.10.12 (global)"
+2024-02-01 18:29:02.543 [info] [Info  - 6:29:02 PM] (20382) Assuming Python version 3.10
+2024-02-01 18:29:04.452 [info] [Info  - 6:29:04 PM] (20382) Found 5671 source files
+2024-02-01 18:29:09.813 [info] [Info  - 6:29:09 PM] (20382) [IDX(3)] Long operation: scan packages /home/luan/odoo/addons (2657ms)
+2024-02-01 18:29:10.990 [info] [Info  - 6:29:10 PM] (20382) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706822937653 at /home/luan/odoo/addons/stock/models/stock_move.py (5012ms)
+2024-02-01 18:36:44.315 [info] [Info  - 6:36:44 PM] (20382) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706822989912 at /home/luan/odoo/addons/stock/models/stock_move.py (2568ms)
+2024-02-01 18:48:55.634 [info] [Info  - 6:48:55 PM] (20382) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706824131789 at /home/luan/odoo/addons/stock/models/stock_move.py (2083ms)
+2024-02-01 19:58:58.733 [info] [Info  - 7:58:58 PM] (20382) [BG(1)] Long operation: checking: /home/luan/odoo/addons/purchase_stock/tests/test_average_price.py (3342ms)
+2024-02-01 19:58:58.735 [info] [Info  - 7:58:58 PM] (20382) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/purchase_stock/tests/test_average_price.py (3342ms)
+2024-02-01 20:03:11.400 [info] [Info  - 8:03:11 PM] (20382) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706828379600 at /home/luan/odoo/addons/sale/models/sale_order.py (5463ms)
+2024-02-01 20:15:51.876 [info] [Info  - 8:15:51 PM] (20382) [BG(1)] Long operation: getSemanticTokens full at /home/luan/odoo/addons/stock/models/stock_picking.py (2121ms)
+2024-02-01 22:55:50.362 [info] [Error - 10:55:50 PM] Server process exited with code 0.
+2024-02-01 22:55:50.989 [info] (Client) Pylance async client (2023.12.1) started with python extension (2023.22.1)
+2024-02-01 22:55:52.508 [info] [Info  - 10:55:52 PM] (25330) Pylance language server 2023.12.1 (pyright a78e2b10) starting
+2024-02-01 22:55:52.509 [info] [Info  - 10:55:52 PM] (25330) Server root directory: /root/.vscode/extensions/ms-python.vscode-pylance-2023.12.1/dist
+2024-02-01 22:55:52.520 [info] [Info  - 10:55:52 PM] (25330) Starting service instance "addons"
+2024-02-01 22:55:52.633 [info] [Info  - 10:55:52 PM] (25330) Setting pythonPath for service "addons": "/bin/python"
+2024-02-01 22:55:52.633 [info] [Info  - 10:55:52 PM] (25330) Setting environmentName for service "addons": "3.10.12 (global)"
+2024-02-01 22:55:52.696 [info] [Info  - 10:55:52 PM] (25330) Assuming Python version 3.10
+2024-02-01 22:55:54.754 [info] [Info  - 10:55:54 PM] (25330) Found 5671 source files
+2024-02-01 22:55:59.574 [info] [Info  - 10:55:59 PM] (25330) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/sale/models/sale_order.py (2218ms)
+2024-02-01 22:55:59.672 [info] [Info  - 10:55:59 PM] (25330) [IDX(2)] Long operation: scan packages /home/luan/odoo/addons (3033ms)
+2024-02-02 12:19:56.993 [info] [Info  - 12:19:56 PM] (25330) [BG(1)] Long operation: getSemanticTokens delta previousResultId:1706884074843 at /home/luan/odoo/addons/stock/models/stock_move.py (2114ms)
+2024-02-02 12:26:31.794 [info] [Info  - 12:26:31 PM] (25330) [BG(1)] Long operation: getSemanticTokens full at /home/luan/odoo/addons/sale/models/sale_order_line.py (2441ms)
+2024-02-02 17:19:21.548 [info] [Info  - 5:19:21 PM] (25330) [BG(1)] Long operation: getSemanticTokens full at /home/luan/odoo/addons/stock/models/stock_move.py (2439ms)
+2024-02-02 17:19:56.121 [info] [Info  - 5:19:56 PM] (25330) [BG(1)] Long operation: analyzing: /home/luan/odoo/addons/stock/models/stock_quant.py (2195ms)

@@ -4,7 +4,9 @@
         "workspaces": {
             "file:///home/luan/odoo/addons": "__default__profile__"
         },
-        "emptyWindows": {}
+        "emptyWindows": {
+            "1706883767586": "__default__profile__"
+        }
     },
     "profileAssociationsMigration": true,
     "telemetry.sqmId": "",
@@ -16,7 +18,11 @@
                 "folderUri": "file:///home/luan/odoo/addons"
             }
         ],
-        "emptyWindows": []
+        "emptyWindows": [
+            {
+                "backupFolder": "1706883767586"
+            }
+        ]
     },
     "windowsState": {
         "lastActiveWindow": {
