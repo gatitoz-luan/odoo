@@ -342,35 +342,6 @@ class SaleOrder(models.Model):
 
     def _compute_journal_id(self):
         self.journal_id = False
-    def confirm_order_and_create_replenish(self):
-        replenish_list = []
-        for order in self:
-            for line in order.order_line:
-                replenish_values = {
-                    'product_id': line.product_id.id,
-                    'product_tmpl_id': line.product_id.product_tmpl_id.id,
-#                   'product_has_variants': line.product_id.product_tmpl_id.has_variants,
-                    'product_uom_category_id': line.product_id.uom_id.category_id.id,
-                    'product_uom_id': line.product_uom.id,
-                    'forecast_uom_id': line.product_id.uom_id.id,
-                    'quantity': line.product_uom_qty,
-                    'date_planned': order.rental_end_date,
-                    'warehouse_id': order.warehouse_id.id,
-        #            'route_id': order.route_id.id,
-                    'company_id': order.company_id.id,
-                }
-                replenish = self.env['product.replenish'].create(replenish_values)
-                replenish_list.append(replenish.id)
-
-        # Chame o método confirm_order padrão para confirmar a venda
-
-        return {
-            'name': _('Replenish Orders'),
-            'type': 'ir.actions.act_window',
-            'res_model': 'product.replenish',
-            'view_mode': 'tree,form',
-            'domain': [('id', 'in', replenish_list)],
-        }
 
 
 
@@ -968,81 +939,6 @@ class SaleOrder(models.Model):
 
         self.write({'state': 'sent'})
 
-    def create_replenish_in(self, order, replenish_date):
-        Picking = self.env['stock.picking']
-        Move = self.env['stock.move']
-        
-        # Encontrar o picking type para reabastecimento (movimentos de entrada)
-        picking_type_id = self.env.ref('stock.picking_type_in').id  # Exemplo: substitua 'stock.picking_type_in' pelo seu picking type específico
-        
-        picking = Picking.create({
-            'location_id': order.warehouse_id.lot_stock_id.id,  # Assumindo que a origem é o estoque do armazém da ordem
-            'location_dest_id': order.partner_id.property_stock_supplier.id,  # Destino é o estoque do fornecedor (ou ajuste conforme necessário)
-            'picking_type_id': picking_type_id,
-            'scheduled_date': replenish_date,
-            'origin': order.name,
-        })
-
-        for line in order.order_line:
-            # Apenas criar movimentos para produtos físicos que requerem reabastecimento
-            if line.product_id.type == 'product':
-                Move.create({
-                    'name': line.name,
-                    'product_id': line.product_id.id,
-                    'product_uom_qty': line.product_uom_qty,
-                    'product_uom': line.product_uom.id,
-                    'picking_id': picking.id,
-                    'location_id': picking.location_id.id,
-                    'location_dest_id': picking.location_dest_id.id,
-                    'date': replenish_date,  # Usar 'date' em vez de 'date_expected'
-                })
-
-        picking.action_confirm()  # Confirma automaticamente o picking, se desejado
-        picking.action_assign()  # Verifica a disponibilidade dos produtos
-
-    def action_confirm(self):
-        """ Confirm the given quotation(s) and set their confirmation date.
-
-        If the corresponding setting is enabled, also locks the Sale Order.
-
-        :return: True
-        :rtype: bool
-        :raise: UserError if trying to confirm cancelled SO's
-        """
-        if not all(order._can_be_confirmed() for order in self):
-            raise UserError(_(
-                "The following orders are not in a state requiring confirmation: %s",
-                ", ".join(self.mapped('display_name')),
-            ))
-
-        self.order_line._validate_analytic_distribution()
-#        self.confirm_order_and_create_replenish()
-
-        for order in self:
-            for line in order.order_line:
-                product_cleaning_time = line.product_id.product_tmpl_id.cleaning_time
-                replenish_date = order.rental_end_date + timedelta(days=product_cleaning_time)
-                self.create_replenish_in(order, replenish_date)
-
-            
-            
-            order.validate_taxes_on_sales_order()
-            if order.partner_id in order.message_partner_ids:
-                continue
-            order.message_subscribe([order.partner_id.id])
-
-        self.write(self._prepare_confirmation_values())
-
-        # Context key 'default_name' is sometimes propagated up to here.
-        # We don't need it and it creates issues in the creation of linked records.
-        context = self._context.copy()
-        context.pop('default_name', None)
-
-        self.with_context(context)._action_confirm()
-        if self.create_uid.has_group('sale.group_auto_done_setting'):  # Public user can confirm SO
-            self.action_lock()
-
-        return True
 
     def _can_be_confirmed(self):
         self.ensure_one()
@@ -2032,3 +1928,90 @@ class SaleOrder(models.Model):
             return self.partner_id.lang
 
         return self.env.lang
+
+
+
+    def create_replenish_in(self, order, replenish_date):
+        Picking = self.env['stock.picking']
+        Move = self.env['stock.move']
+        
+        # Encontrar o picking type para reabastecimento (movimentos de entrada)
+        picking_type_id = self.env.ref('stock.picking_type_in').id  # Exemplo: substitua 'stock.picking_type_in' pelo seu picking type específico
+        
+        picking = Picking.create({
+            'location_id': order.partner_id.property_stock_supplier.id,  # Assumindo que a origem é o estoque do armazém da ordem
+            'location_dest_id': order.warehouse_id.lot_stock_id.id,  # Destino é o estoque do fornecedor (ou ajuste conforme necessário)
+            'picking_type_id': picking_type_id,
+            'scheduled_date': replenish_date,
+            'origin': order.name,
+        })
+
+        for line in order.order_line:
+            # Apenas criar movimentos para produtos físicos que requerem reabastecimento
+            if line.product_id.type == 'product':
+                Move.create({
+                    'name': line.name,
+                    'product_id': line.product_id.id,
+                    'product_uom_qty': line.product_uom_qty,
+                    'product_uom': line.product_uom.id,
+                    'picking_id': picking.id,
+                    'location_id': picking.location_id.id,
+                    'location_dest_id': picking.location_dest_id.id,
+                    'date': replenish_date,  # Usar 'date' em vez de 'date_expected'
+                })
+
+        picking.action_confirm()  # Confirma automaticamente o picking, se desejado
+        picking.action_assign()  # Verifica a disponibilidade dos produtos
+
+
+
+    def action_confirm(self):
+        if not all(order._can_be_confirmed() for order in self):
+            raise UserError(_(
+                "The following orders are not in a state requiring confirmation: %s",
+                ", ".join(self.mapped('display_name')),
+            ))
+
+        self.order_line._validate_analytic_distribution()
+
+        for order in self:
+            order_lines = order.order_line.filtered(lambda l: l.product_id.type == 'product')
+            for line in order_lines:
+                product_cleaning_time = line.product_id.product_tmpl_id.cleaning_time
+                replenish_date = order.rental_end_date + timedelta(days=product_cleaning_time)
+                order.create_replenish_in(order, replenish_date)
+            
+            order.validate_taxes_on_sales_order()
+            if order.partner_id in order.message_partner_ids:
+                continue
+            order.message_subscribe([order.partner_id.id])
+
+        self.write(self._prepare_confirmation_values())
+        self.with_context(self._context)._action_confirm()
+        if self.create_uid.has_group('sale.group_auto_done_setting'):
+            self.action_lock()
+
+        return True
+
+    def confirm_order_and_create_replenish(self, order, replenish_date, line):
+        replenish_list = []
+
+        replenish_values = {
+            'product_id': line.product_id.id,
+            'product_tmpl_id': line.product_id.product_tmpl_id.id,
+            'product_uom_id': line.product_uom.id,
+            'quantity': line.product_uom_qty,
+            'date_planned': replenish_date,
+            'warehouse_id': line.order_id.warehouse_id.id,
+            'route_id': line.route_id.id if line.route_id else False,
+        }
+        replenish = self.env['product.replenish'].create(replenish_values)
+        replenish_list.append(replenish.id)
+
+        return {
+            'name': _('Replenish Orders'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'product.replenish',
+            'view_mode': 'tree,form',
+            'domain': [('id', 'in', replenish_list)],
+        }

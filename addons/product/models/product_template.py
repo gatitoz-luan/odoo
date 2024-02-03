@@ -19,6 +19,19 @@ class ProductTemplate(models.Model):
     _description = "Product"
     _order = "priority desc, name"
 
+    cleaning_time = fields.Integer("Dias para Limpeza")
+    rental_price = fields.Float(string='Preço de Locação Diário')
+
+    @api.onchange('list_price')
+    def _onchange_list_price(self):
+        self.rental_price = self.list_price
+
+    @api.onchange('rental_price')
+    def _onchange_rental_price(self):
+        self.list_price = self.rental_price
+        for variant in self.product_variant_ids:
+            variant.rental_price = self.rental_price
+
     @tools.ormcache()
     def _get_default_category_id(self):
         # Deletion forbidden (at least through unlink)

@@ -19,6 +19,19 @@ class ProductProduct(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'priority desc, default_code, name, id'
 
+    # Campo relacionado para garantir consistência entre os modelos
+    cleaning_time = fields.Integer(related='product_tmpl_id.cleaning_time', string="Dias para Limpeza", readonly=True)
+
+    rental_price = fields.Float(string='Preço de Locação Diário', related='product_tmpl_id.rental_price', readonly=False)
+
+    @api.onchange('lst_price')
+    def _onchange_lst_price(self):
+        self.rental_price = self.lst_price
+
+    @api.onchange('rental_price')
+    def _onchange_rental_price(self):
+        self.lst_price = self.rental_price
+        self.product_tmpl_id.rental_price = self.rental_price
     # price_extra: catalog extra value only, sum of variant extra attributes
     price_extra = fields.Float(
         'Variant Price Extra', compute='_compute_product_price_extra',

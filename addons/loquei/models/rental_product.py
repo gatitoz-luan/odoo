@@ -13,5 +13,5 @@ class RentalProduct(models.Model):
         for record in self:
             if record.rental_price < 0:
                 raise ValidationError("The rental price cannot be negative.")
-
+        
 
